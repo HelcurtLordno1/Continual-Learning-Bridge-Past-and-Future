@@ -117,3 +117,7 @@ If you find our work helpful, please cite:
    year={2024},
 }
 ```
+
+## License
+
+BPF is released under the MIT license. See [LICENSE](LICENSE) for additional details.
