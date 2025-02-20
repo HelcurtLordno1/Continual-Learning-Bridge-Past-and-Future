@@ -27,14 +27,14 @@
 
 ## 📝 TODO List
 - [x] Release the code.
-- [ ] Release the checkpoint.
+- [x] Release the checkpoint.
 - [ ] Release the training script.
 
 
 
 ## 📖 Implementation
 
-### I. Installation
+### 1. Installation
 #### Environment
  - Python == 3.7
  - PyTorch == 1.10.0
@@ -57,14 +57,9 @@ pip install -r requirements.txt
 You can find the Pascal-VOC dataset already in Detectron.
 
 
+### 3. Run
 
-### 3. Settings
-
-
-
-### 4. Run
-
-#### 4.1 Train the first task
+#### 3.1 Train the first task
 
 For the setting of the Pascal-VOC dataset, the first task usually contains categories 5, 10, 15 and 19. So when we train the first task for different settings, we could only train four kinds of the first task. First, choosing the correspoinding task setting (e.g., `taks=10-10`) in the `scripts/run_firststep.sh` file according to your needs, and then run:
 
@@ -74,15 +69,16 @@ bash scripts/run_first_step.sh
 
 
 
-#### 4.2 Train the intermediate model
+#### 3.2 Train the intermediate model
 
 ``` shell script
 bash scripts/run_finetune_step.sh
 ```
+**Note:** To ensure this command runs successfully, you need to uncomment the following section of the code:
+https://github.com/iSEE-Laboratory/BPF/blob/12ee7862c394093c06021543e3b35ea7622a3164/maskrcnn_benchmark/data/datasets/voc.py#L208-L212
 
 
-
-#### 4.3 Train the target model
+#### 3.3 Train the target model
 
 ``` shell script
 bash scripts/run_incre_finetune.sh
