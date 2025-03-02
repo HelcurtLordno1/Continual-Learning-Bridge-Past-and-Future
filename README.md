@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 
 
-**Please, follow the instruction provided by Detectron 1 and found in install.md**
+**Please, follow the instruction provided by Detectron 1 and found in [Install.md](https://github.com/iSEE-Laboratory/BPF/blob/main/INSTALL.md).**
 
 
 
