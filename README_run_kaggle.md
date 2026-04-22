@@ -36,6 +36,11 @@ The notebook executes these blocks in order:
 
 Because `/kaggle/input` is read-only, the notebook creates symlinks instead of copying data.
 
+The notebook now auto-discovers the VOC folder under `/kaggle/input` if `/kaggle/input/voc0712/VOCdevkit` is not present, so it can work with either:
+- `/kaggle/input/voc0712/VOCdevkit`
+- `/kaggle/input/<some_dataset_name>/VOCdevkit`
+- `/kaggle/input/<some_dataset_name>/VOC2007` or `/VOC2012` directly
+
 It links:
 - `/kaggle/input/voc0712/VOCdevkit` -> `datasets/VOCdevkit`
 - `/kaggle/input/voc0712/VOCdevkit` -> `data/voc07/VOCdevkit`
