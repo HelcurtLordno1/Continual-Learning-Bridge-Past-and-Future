@@ -15,6 +15,10 @@ requirements = ["torch", "torchvision"]
 
 
 def get_extensions():
+    if os.getenv("MASKRCNN_BENCHMARK_NO_EXT", "0") == "1":
+        print("MASKRCNN_BENCHMARK_NO_EXT=1 -> skipping C++/CUDA extension build")
+        return []
+
     this_dir = os.path.dirname(os.path.abspath(__file__))
     extensions_dir = os.path.join(this_dir, "maskrcnn_benchmark", "csrc")
 
@@ -65,5 +69,5 @@ setup(
     packages=find_packages(exclude=("configs", "tests",)),
     # install_requires=requirements,
     ext_modules=get_extensions(),
-    cmdclass={"build_ext": torch.utils.cpp_extension.BuildExtension},
+    cmdclass={"build_ext": torch.utils.cpp_extension.BuildExtension} if os.getenv("MASKRCNN_BENCHMARK_NO_EXT", "0") != "1" else {},
 )

@@ -24,6 +24,8 @@ The notebook executes these blocks in order:
 1. Environment bootstrap and GPU check.
 2. Clone/pull repository into `/kaggle/working/Continual-Learning-Bridge-Past-and-Future`.
 3. Install dependencies and run `python setup.py build develop`.
+4. If extension build fails on modern torch/Kaggle toolchains, fallback to:
+	`MASKRCNN_BENCHMARK_NO_EXT=1 python setup.py build develop`
 4. Create symlinks from read-only Kaggle dataset to repository paths.
 5. Build PascalVOCSearchDataset compatibility class (from your sample notebook logic).
 6. Create Kaggle runtime YAML configs under `configs/kaggle_runtime/`.
@@ -115,6 +117,8 @@ Dataset path registration:
 
 2. Build/import extension failure
 - Re-run `python setup.py build develop` cell.
+- If it still fails, use no-extension mode:
+	`MASKRCNN_BENCHMARK_NO_EXT=1 python setup.py build develop`
 - Ensure all dependencies installed.
 
 3. Stage-3 cannot find source/finetune weights
