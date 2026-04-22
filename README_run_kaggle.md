@@ -121,6 +121,11 @@ Dataset path registration:
 	`MASKRCNN_BENCHMARK_NO_EXT=1 python setup.py build develop`
 - Ensure all dependencies installed.
 
+2.1 `pip install -r requirements.txt` fails on scipy uninstall
+- Symptom: `error: uninstall-no-record-file` for scipy in Kaggle base image.
+- Cause: Kaggle/conda preinstalled scipy can miss pip RECORD metadata.
+- Fix used in notebook: auto-generate `requirements_kaggle_safe.txt` that skips pinned `scipy==...`, then install that file.
+
 3. Stage-3 cannot find source/finetune weights
 - Verify stage-1/stage-2 finished and wrote expected files in `/kaggle/working/output/10-10/...`.
 - Confirm generated stage-3 YAML contains correct `MODEL.WEIGHT`, `SOURCE_WEIGHT`, `FINETUNE_WEIGHT`.
