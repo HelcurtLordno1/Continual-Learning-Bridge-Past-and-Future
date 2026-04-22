@@ -23,9 +23,8 @@ Recommended Notebook settings:
 The notebook executes these blocks in order:
 1. Environment bootstrap and GPU check.
 2. Clone/pull repository into `/kaggle/working/Continual-Learning-Bridge-Past-and-Future`.
-3. Install dependencies and run `python setup.py build develop`.
-4. If extension build fails on modern torch/Kaggle toolchains, fallback to:
-	`MASKRCNN_BENCHMARK_NO_EXT=1 python setup.py build develop`
+3. Install dependencies and install the repo in editable no-extension mode:
+	`MASKRCNN_BENCHMARK_NO_EXT=1 python -m pip install -e . --no-build-isolation`
 4. Create symlinks from read-only Kaggle dataset to repository paths.
 5. Build PascalVOCSearchDataset compatibility class (from your sample notebook logic).
 6. Create Kaggle runtime YAML configs under `configs/kaggle_runtime/`.
@@ -121,10 +120,10 @@ Dataset path registration:
 - Re-run symlink cell.
 
 2. Build/import extension failure
-- Re-run `python setup.py build develop` cell.
-- If it still fails, use no-extension mode:
-	`MASKRCNN_BENCHMARK_NO_EXT=1 python setup.py build develop`
-- Ensure all dependencies installed.
+- Kaggle should no longer try to compile the legacy CUDA extension.
+- The notebook uses editable no-extension install mode instead:
+	`MASKRCNN_BENCHMARK_NO_EXT=1 python -m pip install -e . --no-build-isolation`
+- If imports still fail, verify the repo clone succeeded and rerun the install cell.
 
 2.1 `pip install -r requirements.txt` fails on scipy uninstall
 - Symptom: `error: uninstall-no-record-file` for scipy in Kaggle base image.
